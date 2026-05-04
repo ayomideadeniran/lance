@@ -79,13 +79,13 @@ async fn list_jobs(
     }
 
     match params.sort.as_deref() {
-        Some("budget") => query_builder.push(" ORDER BY budget_usdc DESC"),
+        Some("budget") => { query_builder.push(" ORDER BY budget_usdc DESC"); }
         Some("reputation") => {
             // Reputation sort requires joining with a reputation table or calculating score.
             // For now, we'll just sort by created_at as a fallback.
             query_builder.push(" ORDER BY created_at DESC");
         }
-        _ => query_builder.push(" ORDER BY created_at DESC"),
+        _ => { query_builder.push(" ORDER BY created_at DESC"); }
     }
 
     let jobs = query_builder
